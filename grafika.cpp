@@ -67,6 +67,15 @@ int coordinateN[7][5] = {
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1}
+
+int coordinateR[7][5] = {
+    {1, 1, 1, 1, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 1, 1, 1, 0},
+    {1, 0, 0, 1, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1}
 };
 
 int coordinateH[7][5] = {
@@ -78,6 +87,7 @@ int coordinateH[7][5] = {
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1}
 };
+
 
 void drawBlock(int offsetX, int offsetY) {
     for (x = 0; x < blockSize; x++) {
@@ -130,7 +140,7 @@ void drawFont(int xPos, int yPos, char c) {
             //copyMatrix(coordinateO, coordinate);
             break;
         case 'R':
-            //copyMatrix(coordinateR, coordinate);
+            copyMatrix(coordinateR, coordinate);
             break;
         case 'T':
             //copyMatrix(coordinateT, coordinate);
@@ -186,7 +196,7 @@ int main()
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
 
-    drawFont(100, 100, 'A');
+    drawFont(100, 100, 'R');
     drawFont(200, 200, 'B');
     
     munmap(fbp, screensize);
