@@ -193,7 +193,7 @@ void drawBlock(int offsetX, int offsetY, int color) {
     int r = rand() % 256;
     int g = rand() % 256;
     int b = rand() % 256; 
-    if (offsetY < 600 && offsetY > 0) {
+    if (offsetY < 700 && offsetY > 68) {
         for (x = 0; x < blockSize; x++) {
             for (y = 0; y < blockSize; y++) {
                 location = (offsetX +x + vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
@@ -340,7 +340,7 @@ int main()
 
     clear(vinfo.xres, vinfo.yres);
 
-    for (int i = 50; i > 0; i--) {
+    for (int i = 50; i > 10; i--) {
         drawString((vinfo.xres - 60*5)/2, i*10 + 0, "NITHO");
         drawString((vinfo.xres - 60*5)/2, i*10 + 100, "HUSNI");
         drawString((vinfo.xres - 60*4)/2, i*10 + 200, "BAYU");
@@ -348,6 +348,17 @@ int main()
         drawString((vinfo.xres - 60*4)/2, i*10 + 400, "ICHA");
         drawString((vinfo.xres - 60*4)/2, i*10 + 500, "BOWO");
         usleep(100000);        
+    }
+    for (int i = 0; i < 4; ++i){
+        drawString((vinfo.xres - 60*5)/2, 100, "NITHO");
+        drawString((vinfo.xres - 60*5)/2, 200, "HUSNI");
+        drawString((vinfo.xres - 60*4)/2, 300, "BAYU");
+        drawString((vinfo.xres - 60*6)/2, 400, "RAHMAN");
+        drawString((vinfo.xres - 60*4)/2, 500, "ICHA");
+        drawString((vinfo.xres - 60*4)/2, 600, "BOWO");
+        usleep(300000);
+        clear(vinfo.xres, vinfo.yres);
+        usleep(10000);
     }
     
     munmap(fbp, screensize);
