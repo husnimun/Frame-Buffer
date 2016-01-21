@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <vector>
+#include <string>
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -16,104 +17,215 @@ int x = 0, y = 0;
 long int location = 0;
 int blockSize = 10;
 int fontWidth = 5;
-int fontHeight = 7;
+int fontHeight = 9;
 
 
-int coordinateA[7][5] = {
+int coordinateA[9][5] = {
+    {0, 0, 0, 0, 0},
     {0, 1, 1, 1, 0},
     {1, 0, 0, 0, 1},
     {1, 1, 1, 1, 1},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
-    {1, 0, 0, 0, 1}
+    {1, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0}
 };
 
-int coordinateB[7][5] = {
+int coordinateB[9][5] = {
+    {0, 0, 0, 0, 0},
     {1, 1, 1, 1, 0},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
     {1, 1, 1, 1, 0},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
-    {1, 1, 1, 1, 0}
+    {1, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}
 };
 
-int coordinateI[7][5] = {
+int coordinateI[9][5] = {
+    {0, 0, 0, 0, 0},
     {0, 1, 1, 1, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
-    {0, 1, 1, 1, 0}
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}
 };
 
-int coordinateT[7][5] = {
+int coordinateT[9][5] = {
+    {0, 0, 0, 0, 0},
     {1, 1, 1, 1, 1},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
     {0, 0, 1, 0, 0},
-    {0, 0, 1, 0, 0}
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
 };
 
-int coordinateN[7][5] = {
+int coordinateN[9][5] = {
+    {0, 0, 0, 0, 0},
     {1, 0, 0, 0, 1},
     {1, 1, 0, 0, 1},
     {1, 0, 1, 0, 1},
     {1, 0, 0, 1, 1},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
-    {1, 0, 0, 0, 1}
+    {1, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0}
 };
 
-int coordinateR[7][5] = {
+int coordinateR[9][5] = {
+    {0, 0, 0, 0, 0},
     {1, 1, 1, 1, 0},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
     {1, 1, 1, 1, 0},
     {1, 0, 0, 1, 0},
     {1, 0, 0, 0, 1},
-    {1, 0, 0, 0, 1}
+    {1, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0}
 };
 
-int coordinateH[7][5] = {
+int coordinateH[9][5] = {
+    {0, 0, 0, 0, 0},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
     {1, 1, 1, 1, 1},
     {1, 0, 0, 0, 1},
     {1, 0, 0, 0, 1},
-    {1, 0, 0, 0, 1}
+    {1, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateM[9][5] = {
+    {0, 0, 0, 0, 0},
+    {1, 0, 0, 0, 1},
+    {1, 1, 0, 1, 1},
+    {1, 0, 1, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateW[9][5] = {
+    {0, 0, 0, 0, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 1, 0, 1},
+    {1, 1, 0, 1, 1},
+    {1, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateO[9][5] = {
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateC[9][5] = {
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0},
+    {1, 0, 0, 0, 0},
+    {1, 0, 0, 0, 0},
+    {1, 0, 0, 0, 1},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateS[9][5] = {
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateY[9][5] = {
+    {0, 0, 0, 0, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {0, 1, 0, 1, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+};
+
+int coordinateU[9][5] = {
+    {0, 0, 0, 0, 0},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {1, 0, 0, 0, 1},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}
 };
 
 
-void drawBlock(int offsetX, int offsetY) {
-    for (x = 0; x < blockSize; x++) {
-        for (y = 0; y < blockSize; y++) {
-            location = (offsetX +x + vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                       (offsetY +y + vinfo.yoffset) * finfo.line_length;
+void drawBlock(int offsetX, int offsetY, int color) {
+    int r = rand() % 256;
+    int g = rand() % 256;
+    int b = rand() % 256; 
+    if (offsetY < 600 && offsetY > 0) {
+        for (x = 0; x < blockSize; x++) {
+            for (y = 0; y < blockSize; y++) {
+                location = (offsetX +x + vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                           (offsetY +y + vinfo.yoffset) * finfo.line_length;
 
-            *(fbp + location) = 255;        // Some blue
-            *(fbp + location + 1) = 0;      // A little green
-            *(fbp + location + 2) = 0;      // A lot of red
-            *(fbp + location + 3) = 0;      // No transparency
+                if (color == 1) {
+                    *(fbp + location) = g;            // Some blue
+                    *(fbp + location + 1) = b;        // A little green
+                    *(fbp + location + 2) = r;        // A lot of red
+                    *(fbp + location + 3) = 0;          // No transparency 
+                } else {
+                    *(fbp + location) = 0;              // Some blue
+                    *(fbp + location + 1) = 0;          // A little green
+                    *(fbp + location + 2) = 0;          // A lot of red
+                    *(fbp + location + 3) = 0;          // No transparency 
+                }
+                
+            }
         }
-    }
+    } 
 }
 
-void copyMatrix(int M1[7][5], int M2[7][5]) {
-    for (int i = 0; i < 7; i++) {
-        for (int j = 0; j < 5; j++) {
+void copyMatrix(int M1[9][5], int M2[9][5]) {
+    for (int i = 0; i < fontHeight; i++) {
+        for (int j = 0; j < fontWidth; j++) {
             M2[i][j] = M1[i][j];
         }
     }
 }
 
 void drawFont(int xPos, int yPos, char c) {
-    int coordinate[7][5];
+    int coordinate[9][5];
 
     switch(c) {
         case 'A':
@@ -123,7 +235,7 @@ void drawFont(int xPos, int yPos, char c) {
             copyMatrix(coordinateB, coordinate);
             break;
         case 'C':
-            //copyMatrix(coordinateC, coordinate);
+            copyMatrix(coordinateC, coordinate);
             break;
         case 'H':
             copyMatrix(coordinateH, coordinate);
@@ -132,34 +244,63 @@ void drawFont(int xPos, int yPos, char c) {
             copyMatrix(coordinateI, coordinate);
             break;
         case 'M':
-            //copyMatrix(coordinateM, coordinate);
+            copyMatrix(coordinateM, coordinate);
             break;
         case 'N':
             copyMatrix(coordinateN, coordinate);
             break;
         case 'O':
-            //copyMatrix(coordinateO, coordinate);
+            copyMatrix(coordinateO, coordinate);
             break;
         case 'R':
             copyMatrix(coordinateR, coordinate);
             break;
+        case 'S':
+            copyMatrix(coordinateS, coordinate);
+            break;
         case 'T':
             copyMatrix(coordinateT, coordinate);
             break;
+        case 'U':
+            copyMatrix(coordinateU, coordinate);
+            break;
         case 'W': 
-            //copyMatrix(coordinateW, coordinate);
-            break;  
+            copyMatrix(coordinateW, coordinate);
+            break;
+        case 'Y': 
+            copyMatrix(coordinateY, coordinate);
+            break;
     }
-    
-    for(int x = 0; x < fontWidth; x++) {
-        for(int y = 0; y < fontHeight; y++) {
-            if (coordinate[y][x] == 1) {
-                drawBlock(xPos + x*blockSize, yPos + y*blockSize);
-            }
+
+    for (int x = 0; x < fontWidth; x++) {
+        for (int y = 0; y < fontHeight; y++) {
+            drawBlock(xPos + x*blockSize, yPos + y*blockSize, coordinate[y][x]);
         }
     }
 }
 
+void drawString(int xPos, int yPos, std::string str) {
+    int x = 0;
+    int y = 0;
+    for (int i = 0; i < str.length(); i++) {
+        drawFont(xPos +x, yPos + y, str[i]);
+        x += 60;
+    }
+}
+
+void clear(int xRes, int yRes) {
+    for (int x = 0; x < xRes - 10; x++) {
+        for (int y = 0; y < yRes - 10; y++) {
+            location = (x + vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                       (y + vinfo.yoffset) * finfo.line_length;
+
+            *(fbp + location) = 0;        // Some blue
+            *(fbp + location + 1) = 0;      // A little green
+            *(fbp + location + 2) = 0;      // A lot of red
+            *(fbp + location + 3) = 0;      // No transparency
+        }
+    }
+}
 
 
 int main()
@@ -197,12 +338,17 @@ int main()
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
 
-    drawFont(100, 100, 'A');
-    drawFont(100, 200, 'B');
-    drawFont(100, 300, 'H');
-    drawFont(100, 400, 'I');
-    drawFont(100, 500, 'T');
-    drawFont(100, 600, 'R');
+    clear(vinfo.xres, vinfo.yres);
+
+    for (int i = 50; i > 0; i--) {
+        drawString((vinfo.xres - 60*5)/2, i*10 + 0, "NITHO");
+        drawString((vinfo.xres - 60*5)/2, i*10 + 100, "HUSNI");
+        drawString((vinfo.xres - 60*4)/2, i*10 + 200, "BAYU");
+        drawString((vinfo.xres - 60*6)/2, i*10 + 300, "RAHMAN");
+        drawString((vinfo.xres - 60*4)/2, i*10 + 400, "ICHA");
+        drawString((vinfo.xres - 60*4)/2, i*10 + 500, "BOWO");
+        usleep(100000);        
+    }
     
     munmap(fbp, screensize);
     close(fbfd);
